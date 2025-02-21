@@ -18,7 +18,11 @@ router
       successRedirect: "/",
       failureRedirect: "/sessions/logon",
       failureFlash: true,
-    })
+    }),
+    (req, res) => {
+      csrf.refresh(req, res);
+      res.redirect("/");
+    }
   );
 router.route("/logoff").post(logoff);
 
